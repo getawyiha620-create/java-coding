@@ -2,24 +2,25 @@ package com.example;
 
 public class Main {
     public static void main(String[] args) {
-        System.out.println(frontTimes("Chocolate", 2)); // expected: ChoCho
-        System.out.println(frontTimes("Chocolate", 3)); // expected: ChoChoCho
-        System.out.println(frontTimes("Abc", 3)); // expected: AbcAbcAbc
+        // Example runs for doubleX
+        System.out.println(doubleX("axxbb"));   // expected: true
+        System.out.println(doubleX("axaxax")); // expected: false
+        System.out.println(doubleX("xxxxx"));  // expected: true
     }
 
     /**
-     * Return n copies of the "front" of the string. The front is the first 3
-     * characters, or the whole string if it's less than length 3.
+     * Return true if the first instance of "x" in the string is immediately
+     * followed by another "x".
+     * Examples:
+     * doubleX("axxbb") → true
+     * doubleX("axaxax") → false
+     * doubleX("xxxxx") → true
      */
-    public static String frontTimes(String str, int n) {
-        if (str == null)
-            return null;
-        int frontLen = Math.min(3, str.length());
-        String front = str.substring(0, frontLen);
-        StringBuilder sb = new StringBuilder(frontLen * Math.max(0, n));
-        for (int i = 0; i < n; i++) {
-            sb.append(front);
-        }
-        return sb.toString();
+    public static boolean doubleX(String str) {
+        if (str == null) return false;
+        int i = str.indexOf('x');
+        // if there's no 'x' or it's the last character, return false
+        if (i == -1 || i == str.length() - 1) return false;
+        return str.charAt(i + 1) == 'x';
     }
 }
